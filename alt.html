@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -12,7 +12,12 @@ body {
 }
 .r {
 	font-size: 30px;
-	color: #FFF;
+	color: #FFF; /* Tüm linkler için varsayılan renk */
+}
+
+/* 2023 yılı linki için özel renk */
+.r[href*="2023/2023.html"] {
+    color: #FFD700; /* Örneğin, altın rengi */
 }
 </style>
 </head>
