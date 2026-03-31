@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>İyi ki Doğdun Beyza</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#291B3F;
+  --bg-alt:#221535;
+  --cream:#f0e8d8;
+  --cream-dim:rgba(240,232,216,0.45);
+  --gold:#c8922a;
+  --gold-light:#e0b050;
+  --gold-dim:rgba(200,146,42,0.2);
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'DM Sans',sans-serif;
+}
+html{
+  scroll-snap-type:y mandatory;
+  overflow-y:scroll;
+  scroll-behavior:smooth;
+  background:var(--bg);
+  color:var(--cream);
+}
+body{font-family:var(--sans);}
+
+/* grain overlay */
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:9999;opacity:0.5;
+}
+
+/* ── SECTIONS ── */
+section{
+  scroll-snap-align:start;
+  min-height:100vh;
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+
+/* ── HERO ── */
+#hero{
+  background:var(--bg);
+  text-align:center;
+  padding:60px 32px;
+}
+#hero::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 60% at 50% 50%, rgba(200,100,220,0.07) 0%, transparent 70%);
+  pointer-events:none;
+}
+.hero-title{
+  font-family:var(--serif);
+  font-size:clamp(52px,13vw,130px);
+  font-weight:300;line-height:0.9;
+  color:var(--cream);
+  letter-spacing:-0.02em;
+  opacity:0;animation:fadeUp 1.2s ease forwards 0.4s;
+  position:relative;z-index:1;
+}
+.hero-title em{font-style:italic;color:var(--gold-light);}
+.hero-scroll{
+  position:absolute;bottom:36px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  opacity:0;animation:fadeUp 1s ease forwards 1.4s;
+}
+.hero-scroll span{
+  font-size:9px;letter-spacing:0.32em;text-transform:uppercase;
+  color:var(--cream-dim);font-family:var(--sans);
+}
+.sline{
+  width:1px;height:44px;
+  background:linear-gradient(to bottom,var(--gold),transparent);
+  animation:sp 2.2s ease-in-out infinite;
+}
+
+/* ── YEAR SECTIONS ── */
+.year-section{
+  background:var(--bg);
+  padding:60px 32px 60px 32px;
+  gap:32px;
+}
+.year-section:nth-child(even){background:var(--bg-alt);}
+
+.ys-year{
+  font-family:var(--serif);
+  font-size:clamp(13px,1.4vw,16px);
+  font-weight:300;
+  letter-spacing:0.3em;
+  color:var(--gold);
+  text-align:center;
+  opacity:0.7;
+  position:relative;z-index:2;
+  user-select:none;
+}
+
+.ys-img-wrap{
+  max-width:min(660px,88vw);
+  width:100%;
+  position:relative;
+  flex-shrink:0;
+}
+.ys-img-wrap::before,
+.ys-img-wrap::after{
+  content:'';position:absolute;width:24px;height:24px;z-index:2;pointer-events:none;
+}
+.ys-img-wrap::before{top:-1px;left:-1px;border-top:1px solid var(--gold);border-left:1px solid var(--gold);}
+.ys-img-wrap::after{bottom:-1px;right:-1px;border-bottom:1px solid var(--gold);border-right:1px solid var(--gold);}
+.ys-img-wrap img{
+  width:100%;height:auto;display:block;
+  border:1px solid var(--gold-dim);
+  opacity:0.9;transition:opacity 0.5s;
+}
+.ys-img-wrap:hover img{opacity:1;}
+
+/* ── CLOSING ── */
+#closing{
+  background:var(--bg);
+  text-align:center;
+  padding:80px 32px;
+  gap:32px;
+}
+#closing::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 60% at 50% 50%, rgba(200,100,220,0.06) 0%, transparent 70%);
+  pointer-events:none;
+}
+.cl-title{
+  font-family:var(--serif);
+  font-size:clamp(44px,9vw,96px);
+  font-weight:300;line-height:0.93;
+  color:var(--cream);
+  position:relative;z-index:1;
+}
+.cl-title em{font-style:italic;color:var(--gold-light);}
+.cl-sig{
+  font-family:var(--serif);font-size:18px;
+  font-style:italic;color:var(--gold-light);
+  position:relative;z-index:1;
+}
+.gsep{
+  width:1px;height:52px;
+  background:linear-gradient(to bottom,transparent,var(--gold),transparent);
+  position:relative;z-index:1;
+}
+
+/* ── NAV ── */
+.nav-wrap{
+  position:fixed;right:0;top:0;height:100vh;
+  display:flex;align-items:center;
+  z-index:200;
+  pointer-events:none;
+}
+.nav-inner{
+  display:flex;flex-direction:column;
+  align-items:flex-end;
+  gap:2px;
+  padding:0 16px;
+  pointer-events:all;
+  max-height:96vh;
+  overflow:hidden;
+}
+.ndw{
+  display:flex;align-items:center;justify-content:flex-end;
+}
+.nd{
+  font-family:var(--sans);
+  font-size:9px;
+  font-weight:300;
+  letter-spacing:0.1em;
+  color:var(--cream-dim);
+  background:transparent;
+  border:none;
+  cursor:pointer;
+  padding:3px 2px;
+  opacity:0.35;
+  transition:opacity 0.25s,color 0.25s,font-size 0.25s;
+  line-height:1.2;
+  white-space:nowrap;
+}
+.nd:hover{opacity:0.7;}
+.nd.active{
+  opacity:1;
+  color:var(--gold-light);
+  font-size:11px;
+  font-weight:400;
+}
+.nd-home,.nd-closing{
+  font-size:10px;
+}
+
+/* ── ANIMS ── */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes sp{0%,100%{opacity:0.25}50%{opacity:0.9}}
+
+.reveal{opacity:0;transform:translateY(16px);transition:opacity 0.85s ease,transform 0.85s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  .nav-inner{padding:0 10px;gap:1px;}
+  .nd{font-size:8px;padding:2px 1px;}
+  .nd.active{font-size:9px;}
+  .hero-title{font-size:clamp(44px,16vw,80px);}
+  .year-section{padding:40px 20px 40px 20px;gap:20px;}
+  .ys-img-wrap{max-width:96vw;}
+}
+@media(max-width:400px){
+  .nd{display:none;}
+  .nd.active{display:block;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<div class="nav-wrap">
+  <div class="nav-inner">
+    <div class="ndw"><button class="nd nd-home" data-target="hero" aria-label="Başlangıç">∞</button></div>
+    <div class="ndw"><button class="nd" data-target="y2011" aria-label="2011">2011</button></div>
+    <div class="ndw"><button class="nd" data-target="y2012" aria-label="2012">2012</button></div>
+    <div class="ndw"><button class="nd" data-target="y2013" aria-label="2013">2013</button></div>
+    <div class="ndw"><button class="nd" data-target="y2014" aria-label="2014">2014</button></div>
+    <div class="ndw"><button class="nd" data-target="y2015" aria-label="2015">2015</button></div>
+    <div class="ndw"><button class="nd" data-target="y2016" aria-label="2016">2016</button></div>
+    <div class="ndw"><button class="nd" data-target="y2017" aria-label="2017">2017</button></div>
+    <div class="ndw"><button class="nd" data-target="y2018" aria-label="2018">2018</button></div>
+    <div class="ndw"><button class="nd" data-target="y2019" aria-label="2019">2019</button></div>
+    <div class="ndw"><button class="nd" data-target="y2020" aria-label="2020">2020</button></div>
+    <div class="ndw"><button class="nd" data-target="y2021" aria-label="2021">2021</button></div>
+    <div class="ndw"><button class="nd" data-target="y2022" aria-label="2022">2022</button></div>
+    <div class="ndw"><button class="nd" data-target="y2023" aria-label="2023">2023</button></div>
+    <div class="ndw"><button class="nd" data-target="y2024" aria-label="2024">2024</button></div>
+    <div class="ndw"><button class="nd" data-target="y2025" aria-label="2025">2025</button></div>
+    <div class="ndw"><button class="nd" data-target="y2026" aria-label="2026">2026</button></div>
+    <div class="ndw"><button class="nd nd-closing" data-target="closing" aria-label="∞">∞</button></div>
+  </div>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <h1 class="hero-title">İyi ki<br><em>Doğdun</em><br>Beyza.</h1>
+  <div class="hero-scroll">
+    <span>kaydır</span>
+    <div class="sline"></div>
+  </div>
+</section>
+
+<section id="y2011" class="year-section" data-year="2011">
+  <div class="ys-year">2011</div>
+  <div class="ys-img-wrap">
+    <img src="2011/iyikidogdunbeyza2011.jpg" alt="2011" loading="lazy" />
+  </div>
+</section>
+
+<section id="y2012" class="year-section" data-year="2012">
+  <div class="ys-year">2012</div>
+  <div class="ys-img-wrap">
+    <img src="2012/iyikidogdunbeyza2012.jpg" alt="2012" loading="lazy" />
+  </div>
+</section>
+
+<section id="y2013" class="year-section" data-year="2013">
+  <div class="ys-year">2013</div>
+  <div class="ys-img-wrap">
+    <img src="2013/iyikidogdunbeyza2013.jpg" alt="2013" loading="lazy" />
+  </div>
+</section>
+
+<section id="y2014" class="year-section" data-year="2014">
+  <div class="ys-year">2014</div>
+  <div class="ys-img-wrap">
+    <img src="2014/iyikidogdunbeyza2014.jpg" alt="2014" loading="lazy" />
+  </div>
+</section>
+
+<section id="y2015" class="year-section" data-year="2015">
+  <div class="ys-year">2015</div>
+  <div class="ys-img-wrap">
+    <img src="2015/iyikidogdunbeyza2015.jpg" alt="2015" loading="lazy" />
+  </div>
+</section>
+
+<section id="y2016" class="year-section" data-year="2016">
+  <div class="ys-year">2016</div>
+  <div class="ys-img-wrap">
+    <img src="2016/iyikidogdunbeyza2016.jpg" alt="2016" loading="lazy" />
+  </div>
+</section>
+
+<section id="y2017" class="year-section" data-year="2017">
+  <div class="ys-year">2017</div>
+  <div class="ys-img-wrap">
+    <img src="2017/iyikidogdunbeyza2017.jpg" alt="2017" loading="lazy" />
+  </div>
+</section>
+
+<section id="y2018" class="year-section" data-year="2018">
+  <div class="ys-year">2018</div>
+  <div class="ys-img-wrap">
+    <img src="2018/iyikidogdunbeyza2018.jpg" alt="2018" loading="lazy" />
+  </div>
+</section>
+
+<section id="y2019" class="year-section" data-year="2019">
+  <div class="ys-year">2019</div>
+  <div class="ys-img-wrap">
+    <img src="2019/iyikidogdunbeyza2019.jpg" alt="2019" loading="lazy" />
+  </div>
+</section>
+
+<section id="y2020" class="year-section" data-year="2020">
+  <div class="ys-year">2020</div>
+  <div class="ys-img-wrap">
+    <img src="2020/iyikidogdunbeyza2020.jpg" alt="2020" loading="lazy" />
+  </div>
+</section>
+
+<section id="y2021" class="year-section" data-year="2021">
+  <div class="ys-year">2021</div>
+  <div class="ys-img-wrap">
+    <img src="2021/iyikidogdunbeyza2021.jpg" alt="2021" loading="lazy" />
+  </div>
+</section>
+
+<section id="y2022" class="year-section" data-year="2022">
+  <div class="ys-year">2022</div>
+  <div class="ys-img-wrap">
+    <img src="2022/iyikidogdunbeyza2022.jpg" alt="2022" loading="lazy" />
+  </div>
+</section>
+
+<section id="y2023" class="year-section" data-year="2023">
+  <div class="ys-year">2023</div>
+  <div class="ys-img-wrap">
+    <img src="2023/iyikidogdunbeyza2023.jpg" alt="2023" loading="lazy" />
+  </div>
+</section>
+
+<section id="y2024" class="year-section" data-year="2024">
+  <div class="ys-year">2024</div>
+  <div class="ys-img-wrap">
+    <img src="2024/iyikidogdunbeyza2024.jpg" alt="2024" loading="lazy" />
+  </div>
+</section>
+
+<section id="y2025" class="year-section" data-year="2025">
+  <div class="ys-year">2025</div>
+  <div class="ys-img-wrap">
+    <img src="2025/iyikidogdunbeyza2025.jpg" alt="2025" loading="lazy" />
+  </div>
+</section>
+
+<section id="y2026" class="year-section" data-year="2026">
+  <div class="ys-year">2026</div>
+  <div class="ys-img-wrap">
+    <img src="2026/iyikidogdunbeyza2026.jpg" alt="2026" loading="lazy" />
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section id="closing">
+  <div class="gsep reveal"></div>
+  <h2 class="cl-title reveal">İyi ki<br><em>doğdun.</em></h2>
+  <div class="gsep reveal"></div>
+</section>
+
+<script>
+// Section IDs in order — must match actual HTML id attributes
+const sids = ['hero','y2011','y2012','y2013','y2014','y2015','y2016','y2017','y2018','y2019','y2020','y2021','y2022','y2023','y2024','y2025','y2026','closing'];
+
+const allNd = document.querySelectorAll('.nd');
+
+// Nav click → scroll to section
+allNd.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const target = btn.dataset.target;
+    const el = document.getElementById(target);
+    if (el) el.scrollIntoView({behavior: 'smooth'});
+  });
+});
+
+// Scroll → active nav button
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting || e.intersectionRatio < 0.4) return;
+    const idx = sids.indexOf(e.target.id);
+    allNd.forEach((d, i) => d.classList.toggle('active', i === idx));
+  });
+}, {threshold: 0.4});
+
+sids.forEach(id => {
+  const el = document.getElementById(id);
+  if (el) obs.observe(el);
+});
+
+// Reveal animations
+const revObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      revObs.unobserve(e.target);
+    }
+  });
+}, {threshold: 0.1});
+
+document.querySelectorAll('.reveal').forEach((el, i) => {
+  el.style.transitionDelay = `${(i % 3) * 0.08}s`;
+  revObs.observe(el);
+});
+</script>
+</body>
+</html>
